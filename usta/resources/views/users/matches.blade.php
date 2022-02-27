@@ -158,7 +158,7 @@
                    </div> {{ $comment->content }}
                     <br><br>
                 @endforeach
-                @endif
+                
                 <form action="{{ route('matches') }}" method="post">
 
                     <div><textarea name="comment" cols="50" rows="5"></textarea></div>
@@ -166,6 +166,7 @@
                     <input type="hidden" name="match_id" value="{{ $match->id }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
+                @endif
             </article>
             <!-- /Article -->
 
