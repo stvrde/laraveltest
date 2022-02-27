@@ -147,7 +147,7 @@
                         </tr>
                     </table>
 
-                @endif
+                
                 <header class="page-header">
                     <h1 class="page-title">Comments</h1>
                 </header>
@@ -158,6 +158,7 @@
                    </div> {{ $comment->content }}
                     <br><br>
                 @endforeach
+                @endif
                 <form action="{{ route('matches') }}" method="post">
 
                     <div><textarea name="comment" cols="50" rows="5"></textarea></div>
