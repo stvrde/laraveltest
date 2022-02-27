@@ -32,27 +32,25 @@
                 <div class="row widget">
                     <div class="col-xs-12">
                         <h4>EVENTS</h4>
-                        @foreach($events as $openEvent)
-                            <div><a href="{{ route('events', ['event_id' => $openEvent->id]) }}">Event: {{ $openEvent->location }}</a></div>
-                            <div>Created: {{ $openEvent->created_at }}</div>
-                            <div>Players: {{ $openEvent->user->count()."/".$openEvent->capacity }}</div>
-                            <div>Start: {{ $openEvent->start }}</div>
-                            <br>
+                        @if(isset($events) )
+                            @foreach($events as $openEvent)
+                                <div><a href="{{ route('events', ['event_id' => $openEvent->id]) }}">Event: {{ $openEvent->location }}</a></div>
+                                <div>Created: {{ $openEvent->created_at }}</div>
+                                <div>Players: {{ $openEvent->user->count()."/".$openEvent->capacity }}</div>
+                                <div>Start: {{ $openEvent->start }}</div>
+                                <br>
 
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                 </div>
-                <div class="row widget">
-                    <div class="col-xs-12">
-                        <h4>Lorem ipsum dolor sit</h4>
-                        <p><img src="/images/1.jpg" alt=""></p>
-                    </div>
-                </div>
+                
 
             </aside>
             <!-- /Sidebar -->
 
             <!-- Article main content -->
+           <!
             <article class="col-md-8 maincontent">
                 <header class="page-header">
                     @if ($event != null)
@@ -65,21 +63,26 @@
                 </header>
                 <form action="{{ route('events') }}" method="post">
                     Home:
+                    @if(isset($home) )
                     @php($i=0)
+
                     @foreach ($home as $player)
-                        {{ $player['name'] }}
-                        @php($i+=$player['mmr'])
+                        {{ isset($player['name']) }}
+                        @php($i+=(isset($player['mmr'])))
                     @endforeach
                     @if($i>1){{ "(avg: ".$i / (count($home)-1).")" }}@endif
-
+                    @endif
                     <br>
+                    
                     Away:
+                    @if(isset($away) )
                     @php($i=0)
                     @foreach ($away as $player)
-                        {{ $player['name'] }}
-                        @php($i+=$player['mmr'])
+                        {{ isset($player['name']) }}
+                        @php($i+=(isset($player['mmr'])))
                     @endforeach
                     @if($i>1){{ "(avg: ".$i / (count($away)-1).")" }}@endif
+                    @endif
                     <br><br>
                     @if ($event != null)
                         <div>
@@ -103,6 +106,7 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
+
 
 
             </article>
