@@ -62,13 +62,21 @@
                     @endif
                 </header>
                 <form action="{{ route('events') }}" method="post">
+                    
                     Home:
                     @if(isset($home) )
+                    <!--
+                    @php
+                    var_dump($home)
+                    @endphp
+-->
                     @php($i=0)
 
                     @foreach ($home as $player)
-                        {{ isset($player['name']) }}
-                        @php($i+=(isset($player['mmr'])))
+                    @if(isset($player['name']))
+                        {{$player['name']}}
+                        @php($i+=($player['mmr']))
+                         @endif
                     @endforeach
                     @if($i>1){{ "(avg: ".$i / (count($home)-1).")" }}@endif
                     @endif
@@ -78,8 +86,10 @@
                     @if(isset($away) )
                     @php($i=0)
                     @foreach ($away as $player)
-                        {{ isset($player['name']) }}
-                        @php($i+=(isset($player['mmr'])))
+                    @if(isset($player['name']))
+                        {{$player['name']}}
+                        @php($i+=($player['mmr']))
+                         @endif
                     @endforeach
                     @if($i>1){{ "(avg: ".$i / (count($away)-1).")" }}@endif
                     @endif
