@@ -16,8 +16,16 @@
     @yield('styles')
 </head>
 <body>
+<style type="text/css">
+            .main{
+                min-height: 100vh;
+                height: 100%;
+            }    
+</style>
 @include('includes.guestHeader')
+<div class="main">
 @yield('content')
+</div>
 @include('includes.footer')
 </body>
 </html>
