@@ -15,9 +15,17 @@
         <link rel="stylesheet" href="/css/main.css">
         @yield('styles')
     </head>
+    <style type="text/css">
+            .main{
+                min-height: 100vh;
+                height: 100%;
+            }    
+    </style>
     <body>
     @include('includes.header')
+    <div class="main">
     @yield('content')
+    </div>
     @include('includes.footer')
     </body>
 </html>
